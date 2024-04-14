@@ -3,6 +3,11 @@ import "./App.css";
 
 function App() {
   const [name, setName] = useState("React Search Application");
+  const [monsters, setMonsters] = useState([
+    { name: "Linda" },
+    { name: "Frank" },
+    { name: "Jacky" },
+  ]);
 
   const handleClick = () => {
     setName("Changed");
