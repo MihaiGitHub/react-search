@@ -16,6 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {monsters.map((item) => {
+          return <h1>{item.name}</h1>;
+        })}
         <button onClick={() => handleClick()}>{name}</button>
       </header>
     </div>
