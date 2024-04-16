@@ -18,6 +18,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <input
+          className="search-box"
+          type="search"
+          placeholder="search monsters"
+          onChange={(event) => {
+            console.log(event);
+          }}
+        />
         {monsters.map((item, index) => {
           return <h1 key={index}>{item.name}</h1>;
         })}
