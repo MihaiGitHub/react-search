@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [name, setName] = useState("React Search Application");
-  const [monsters, setMonsters] = useState([
-    { name: "Linda" },
-    { name: "Frank" },
-    { name: "Jacky" },
-  ]);
+  const [monsters, setMonsters] = useState([]);
+
+  useEffect(() => {
+    fetch("https:jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((response) => setMonsters(response));
+  }, []);
 
   const handleClick = () => {
     setName("Changed");
