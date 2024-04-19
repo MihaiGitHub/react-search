@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="app-title">Monsters Rolodex</h1>
       <header className="App-header">
         <SearchBox
           className={"search-box"}
