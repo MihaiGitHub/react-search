@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import CardList from "./components/card-list/card-list.component";
 import "./App.css";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           return <h1 key={index}>{item.name}</h1>;
         })}
         <button onClick={() => handleClick()}>{name}</button>
+        <CardList />
       </header>
     </div>
   );
