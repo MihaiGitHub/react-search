@@ -13,10 +13,6 @@ function App() {
       .then((response) => setMonsters(response));
   }, []);
 
-  const handleClick = () => {
-    setName("Changed");
-  };
-
   const filteredMonsters = monsters.filter((item) => {
     return item.name.toLocaleLowerCase().includes(searchField);
   });
@@ -37,7 +33,6 @@ function App() {
         {filteredMonsters.map((item, index) => {
           return <h1 key={index}>{item.name}</h1>;
         })}
-        <button onClick={() => handleClick()}>{name}</button>
         <CardList />
       </header>
     </div>
