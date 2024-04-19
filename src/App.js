@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
 function App() {
-  const [name, setName] = useState("React Search Application");
   const [monsters, setMonsters] = useState([]);
   const [searchField, setSearchfield] = useState([]);
 
@@ -20,17 +20,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input
-          className="search-box"
-          type="search"
-          placeholder="search monsters"
-          onChange={(event) => {
-            const searchField = event.target.value.toLocaleLowerCase();
-
-            setSearchfield(searchField);
-          }}
+        <SearchBox
+          className={"search-box"}
+          setSearchfield={setSearchfield}
+          placeholder={"search monsters"}
         />
-
         <CardList monsters={filteredMonsters} />
       </header>
     </div>
