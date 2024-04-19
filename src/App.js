@@ -30,10 +30,8 @@ function App() {
             setSearchfield(searchField);
           }}
         />
-        {filteredMonsters.map((item, index) => {
-          return <h1 key={index}>{item.name}</h1>;
-        })}
-        <CardList />
+
+        <CardList monsters={filteredMonsters} />
       </header>
     </div>
   );
