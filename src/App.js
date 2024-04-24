@@ -8,6 +8,8 @@ function App() {
   const [monsters2, setMonsters2] = useState(monsters);
   const [searchField, setSearchfield] = useState([]);
 
+  console.log("rendered");
+
   useEffect(() => {
     console.log("component mounted");
 
@@ -16,13 +18,17 @@ function App() {
       .then((response) => setMonsters(response));
   }, []);
 
-  useEffect(() => {
-    const filteredMonsters = monsters.filter((item) => {
-      return item.name.toLocaleLowerCase().includes(searchField);
-    });
+  // useEffect(() => {
+  //   const filteredMonsters = monsters.filter((item) => {
+  //     return item.name.toLocaleLowerCase().includes(searchField);
+  //   });
 
-    setMonsters2(filteredMonsters);
-  }, [monsters2, searchField]);
+  //   setMonsters2(filteredMonsters);
+  // }, [monsters2, searchField]);
+
+  const filteredMonsters = monsters.filter((item) => {
+    return item.name.toLocaleLowerCase().includes(searchField);
+  });
 
   return (
     <div className="App">
