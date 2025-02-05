@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 import { getData } from "./utils/data.utils";
 import "./App.css";
 
-type Monster = {
+export type Monster = {
   id: string;
   name: string;
   email: string;
 };
 
 function App() {
-  const [monsters, setMonsters] = useState([]);
+  // expects a monsters array
+  const [monsters, setMonsters] = useState<Monster[]>([]);
   const [monsters2, setMonsters2] = useState(monsters);
   const [title, setTitle] = useState("");
-  const [searchField, setSearchfield] = useState([]);
+  // typescript can infer the type if it has the type assigned already "empty string"
+  const [searchField, setSearchfield] = useState("");
 
   console.log("rendered");
 
@@ -25,16 +27,26 @@ function App() {
       const users = await getData<Monster[]>(
         "https:jsonplaceholder.typicode.com/users"
       );
+
+      // must send a monsters array
+      setMonsters(users);
     };
+
+    fetchUsers();
   }, []);
 
   const filteredMonsters = monsters.filter((item) => {
     return item.name.toLocaleLowerCase().includes(searchField);
   });
 
-  const onTitlechange = (event) => {
+  const onTitlechange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchString = event.target.value.toLocaleLowerCase();
     setTitle(searchString);
+  };
+
+  const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const searchFieldString = event.target.value.toLowerCase();
+    setSearchfield(searchFieldString);
   };
 
   return (
@@ -43,7 +55,7 @@ function App() {
       <header className="App-header">
         <SearchBox
           className={"search-box"}
-          setSearchfield={setSearchfield}
+          onChangeHandler={onSearchChange}
           placeholder={"search monsters"}
         />
         <SearchBox
